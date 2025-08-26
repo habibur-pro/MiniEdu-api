@@ -13,12 +13,13 @@ const createStudent = catchAsync(async (req, res) => {
     })
 })
 const getAllStudents = catchAsync(async (req, res) => {
-    const data = await StudentService.getAllStudents()
+    const data = await StudentService.getAllStudents(req)
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
         message: 'all student fetched successfully',
-        data: data,
+        meta: data.meta,
+        data: data.data,
     })
 })
 

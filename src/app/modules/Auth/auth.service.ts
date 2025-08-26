@@ -1,4 +1,4 @@
-import ApiError from '../../helpers/ApiErrot'
+import ApiError from '../../helpers/ApiError'
 import httpStatus from 'http-status'
 import { IUser } from '../User/user.interface'
 import User from '../User/user.model'

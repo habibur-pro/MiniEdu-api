@@ -1,4 +1,4 @@
-import ApiError from '../../helpers/ApiErrot'
+import ApiError from '../../helpers/ApiError'
 import Student from '../Student/student.model'
 import User from '../User/user.model'
 import { IClass } from './class.interface'

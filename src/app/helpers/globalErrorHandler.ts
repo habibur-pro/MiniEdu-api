@@ -2,7 +2,7 @@ import { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
 import { ZodError } from 'zod'
 
 import handleZodError from './handleZodError'
-import ApiError from './ApiErrot'
+import ApiError from './ApiError'
 import { IGenericErrorMessages } from './helper.interface'
 import config from '../config'
 
@@ -16,7 +16,6 @@ const globalErrorHandler: ErrorRequestHandler = (
     let statusCode = 500
     let message = 'Something went wrong !'
     let errorMessages: IGenericErrorMessages[] = []
-
     if (error instanceof ZodError) {
         const simplifiedError = handleZodError(error)
         statusCode = simplifiedError.statusCode

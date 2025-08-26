@@ -1,4 +1,5 @@
-import ApiError from '../../helpers/ApiErrot'
+import { Request } from 'express'
+import ApiError from '../../helpers/ApiError'
 import Class from '../Class/class.model'
 import { IStudent } from './student.interface'
 import Student from './student.model'
@@ -12,9 +13,25 @@ const createStudent = async (payload: Partial<IStudent>) => {
     const newStudent = await Student.create(studentData)
     return newStudent
 }
-const getAllStudents = async () => {
-    const students = await Student.find().populate('class_id')
-    return students
+const getAllStudents = async (req: Request) => {
+    const page = parseInt(req.query.page as string)
+    const limit = parseInt(req.query.limit as string)
+    const skip = (page - 1) * page
+
+    const total = await Student.countDocuments()
+    const students = await Student.find()
+        .skip(skip)
+        .limit(limit)
+        .populate('class_id')
+    return {
+        meta: {
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit),
+            totalItems: total,
+        },
+        data: students,
+    }
 }
 const getSingleStudent = async (studentId: string) => {
     const student = await Student.findOne({ id: studentId }).populate(
