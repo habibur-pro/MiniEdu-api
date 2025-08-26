@@ -113,7 +113,7 @@ const signin = async (req: Request, res: Response) => {
     return responseData
 }
 
-export async function refreshToken(req: Request, res: Response) {
+const refreshToken = async (req: Request, res: Response) => {
     const { refreshToken } = req.cookies
     // check refresh token into cookie
     if (!refreshToken) {
