@@ -2,6 +2,8 @@
 
 MiniEdu-API is a lightweight school management system API designed to manage students, teachers, and classes.
 
+- **Live Link**: [My details and works](https://mini-edu-api.vercel.app/)
+
 ## Features
 
 ### 1. Authentication Module
